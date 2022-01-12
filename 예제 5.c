@@ -1,26 +1,35 @@
-#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
-#include <string.h>
+#include <stdlib.h>
 
-int* sub(int p)
+int main(void)
 {
-	static int *a;
-	a = &p;
+	int* p, n = 1, i = 0;
+	char yn;
+	//puts("number? ");
+	//scanf("%d", &n);
 
-	*a = p * p;
+	p = (int*)malloc(sizeof(int) * 3);
+	
+	if (p == NULL) {
+		printf("allocation error");
+	}
 
-	return a;
-}
+	while (1) {
+		scanf("%d", &p[i]);
+		printf("more?(y/n) : ");
+		scanf("%c", &yn);
+		if (yn == 'y') {
+			p = (int*)realloc(p, sizeof(int) * (i + 2));
+			i++;
+		}
+		else if (yn == 'n')
+			break;
+	}
 
-int main()
-{
-	int a = 3, *ap;
+	for (int j = 0; j < i + 1; j++) {
+		printf("%d", p[j]);
+	}
 
-	sub(a);
-	printf("%d", a);
-
-	ap = sub(a);
-	printf("%d", *ap);
-
+	free(p);
 	return 0;
 }
