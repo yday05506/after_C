@@ -5,19 +5,17 @@ int main()
 	char name[100];
 	char tel[100];
 	
-	printf("이름 입력 : ");
+	printf("입력 : ");
 	fgets(name, 100, stdin);
-	printf("전화번호 입력 : ");
-	fgets(tel, 100, stdin);
 
 	FILE *info;
-	info = fopen("information.txt", "w");
+	info = fopen("information.txt", "a");
 
 	if (info == NULL)
 		printf("open fail");
 
 	fputs(name, info);
-	fputs(tel, info);
+	//fputs(tel, info);
 
 	fclose(info);
 
